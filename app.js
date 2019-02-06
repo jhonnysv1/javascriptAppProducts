@@ -34,6 +34,7 @@ class UI {
     deleteProduct(element){
         if (element.name == 'delete') {
             element.parentElement.parentElement.parentElement.remove();
+            this.showMessage('Product deleted succesfully', 'info');
         }
     }
 
@@ -66,6 +67,11 @@ document.getElementById('product-form').addEventListener('submit',function(e){
     const product = new Product(name,price,year);
 
     const uielement = new UI();
+
+    if (name === '' || price === '' || year === '') {
+       return uielement.showMessage('Complete field please', 'danger');
+    }
+
     uielement.addProduct(product);
 
     console.log(name , price, year);
